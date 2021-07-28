@@ -1,0 +1,60 @@
+--- 
+title: "Indicadores Alerta de Violencia de Género (AVGM) del Estado de Jalisco."
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Línea base de la Alerta de Violencia de Género (AVGM) del Estado de Jalisco."
+---
+text-align: justify
+
+class: inverse, middle, center
+
+# Objetivo 1 {#objetivo1}
+
+| Objetivo              | Número de indicadores    | Dependencia responsable     | 
+|-----------------------|--------------------------|-----------------------------|
+| Objetivo 1            | 05                       | IJCF                        |
+| Objetivo 2            | 10                       | FE, SS, SISEMH              |
+| Objetivo 3            | 08                       | SSJ                         |
+| Objetivo 4            | 03                       | FE                          |
+| Objetivo 5            | 04                       | FE                          |
+| Objetivo 6            | 09                       | FE                          |
+| Objetivo generales    | 03                       | FE, Hacienda, Poder Judicial|
+
+Para la medición de la implementación del Plan Estratégico para el Seguimiento de la Alerta de Violencia de Género contra las Mujeres del Estado de Jalisco. Los indicadores están clasificados de acuerdo al objetivo específico del Plan que buscanmedir,mismos que se enlistan como sigue:
+
+- **Objetivo 1:** Garantizar que todos los servicios forenses actúen con debida diligencia y con perspectiva de género.
+- **Objetivo 2:** Garantizar la atención, otorgamiento y seguimiento de órdenes de protección a mujeres que se encuentran en situación de violencia.
+- **Objetivo 3:** Garantizar en toda su dimensión la correcta aplicación de la NOM046-SSA2-2005 y del Programa ILE.
+- **Objetivo 4:** Alimentar el Banco Estatal de Casos de Violencia contra las Mujeres.
+- **Objetivo 5:** Mejorar la debida diligencia en los delitos por razón de género, de manera particular feminicidios, violencia sexual, trata y violencia familiar.
+- **Objetivo 6:** Fortalecer el marco normativo y la operatividad del Protocolo Alba.
+
+En el [micrositio](https://avgm.jalisco.gob.mx/) de los indicadores de la Alerta de Violencia de Género (AVGM) del Estado de Jalisco podrás encontrar màs información.
+
+
+## Indicador 1
+**Porcentaje de servicios forenses en casos de muertes violentas de mujeres, provistos
+conforme a la debida diligencia y perspectiva de género.**
+
+## Indicador 2
+**Porcentaje de dictámenes psicosociales en que familiares, víctimas indirectas y/o
+personas conocidas proveen información para el desarrollo del dictamen.**
+
+## Indicador 3
+**Porcentaje de peritajes en servicios forenses con perspectiva de género aplicados
+conforme a instrumentos de operación del IJCF.**
+
+## Indicador 4
+**Porcentaje de dictámenes de muertes violentas de mujeres en los que se presenta
+acreditación técnica-científica con razones de género conforme al Protocolo de
+Actuación con PEG para la Investigación del Delito de Feminicidio.**
+
+## Indicador 5
+**Porcentaje del personal de la Unidad Multidisciplinaria adecuadamente capacitado
+sobre el Protocolo de Actuación con Perspectiva de Género para la Investigación del
+Delito de Feminicidio.**
+
+

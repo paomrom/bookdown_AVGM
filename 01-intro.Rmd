@@ -1,0 +1,194 @@
+# Objetivo 2 {#objetivo2}
+
+
+## Indicador 8
+**Porcentaje de personal capacitado en la adecuada aplicación del Modelo de Atención, Otorgamiento y Seguimiento de Órdenes de Protección.**
+
+<span style="color:red">Línea base pendiente </span>
+
+**Observaciones:**
+
+Este indicador esta sujeto a la aplicación del Modelo de Atención, Otorgamiento y Seguimiento de Órdenes de Protección, asi como a un presupuesto para capacitar al personal, Secretaria de Seguridad refere que hace falta $300,000 (trecentos mil pesos).
+
+|Entrega de información             |Observaciones solventadas        |Línea base confiable               |
+|-----------------------------------|---------------------------------|-----------------------------------|
+|<span style="color:red">No</span>|<span style="color:red">Sin Observaciones </span>|<span style="color:red">Pendiente de cálculo</span>  |
+
+
+## Indicador 9
+**Porcentaje de medidas de protección otorgadas que fueron trabajadas y/o notificadas efectiva y personalmente a la persona agresora en relación al total.**
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+library(readxl)
+library(dplyr)
+library(xtable)
+library(ggplot2)
+library(tidyr)
+library(plotly)
+
+library(bookdown)
+
+```
+
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+indicadores_9 <- read_excel("/Users/paolamanzor/Desktop/Indicadores Fiscalía 31122020.xlsx", 
+                          range = "A8:g1632", 
+                          col_types = c("text", "numeric", "text", "numeric", "numeric", "numeric", "text"),
+                          sheet = "Ind 9")
+```
+
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+indicadores_9 <- indicadores_9 %>%
+  mutate(MES=factor(MES,
+                    levels=c("Enero", "Febrero", "Marzo","Abril", "Mayo", "Junio",
+                             "Julio", "Agosto", "Septiembre","Octubre", "Noviembre", "Diciembre")))
+
+Año<- data.frame(Año=c("2020"))
+
+```
+
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+
+indicadores_9_valor <-indicadores_9 %>% 
+  group_by(MES) %>% 
+  summarise(Total=sum(`TOTAL DE MEDIDAS DE PROTECCIÓN EMITIDAS POR VIOLENCIA POR RAZÓN DE GÉNERO\r\n VIGENTES`, na.rm = T),
+            Trabajadas=sum(`MEDIDAS DE PROTECCIÓN EMITIDAS POR VIOLENCIA POR RAZÓN DE GÉNERO \r\nVIGENTES QUE FUERON TRABAJADAS`, na.rm=T),
+            Notificadas=sum(`MEDIDAS DE PROTECCIÓN EMITIDAS POR VIOLENCIA POR RAZÓN DE GÉNERO QUE FUERON NOTIFICADAS\r\nEFECTIVA Y PERSONALMENTE A LA PERSONA AGRESORA`, na.rm=T)) %>% 
+              filter(Total>0)
+
+indicadores_9_valor<-cbind(indicadores_9_valor, Año)
+indicadores_9_valor = rename(indicadores_9_valor, c(Mes="MES"))
+
+```
+
+
+Informacion mensual del año 2020 para el cálculo de la línea base del indicador.
+```{r, echo=FALSE,  message=FALSE}
+knitr::kable(indicadores_9_valor)
+```
+
+```{r, echo=FALSE,  message=FALSE}
+long <- indicadores_9_valor %>%
+  pivot_longer("Total":"Notificadas", names_to = "Medidas") 
+
+long <- long %>% mutate(Medidas=factor(Medidas,
+                      levels=c("Total", "Trabajadas", "Notificadas")))
+
+cols <- c("#C91682", "#7E3794", "#c48ccf")
+
+
+g1<-ggplot(long, aes(x = Mes, y = value, color = Medidas,  group=Medidas)) +
+  geom_line()+
+  scale_color_manual(values = cols)+
+  geom_point()+
+  scale_color_manual(values = cols)+
+  ggtitle("") +  
+  xlab("") + 
+  ylab("")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+### Visualización
+```{r, echo=FALSE,  message=FALSE,  fig.width = 8, fig.height = 4}
+g1 %>% ggplotly()
+```
+### Cálculo línea base
+
+|Total de medidas  | Trabajadas     | Notificadas|
+|------------------|----------------|------------|
+| 18,848           | 7,294          | 11,760     | 
+
+<br>
+
+$$ \frac{Medidas\ de\ protección \ emitidas \ trabajadas }
+{Medidas \ de \  protección \ emitidas \  que \ fueron \ notificadas}  100$$
+$$ \frac{7,294}
+{11,790}100=62$$
+
+
+
+|Unidad de medida   | Tendencia deseable     | Línea base|
+|-------------------|------------------------|-----------|
+| Porcentaje        | Positiva               |62         |  
+
+
+### Observaciones
+
+Desglosar las medidas de protección emitidas, es decir de las 18,848 emitidas en 2020, determinar cuáles de estas fueron trabajadas (<18,848), y del total de trabajadas cuantas fueron notificadas.
+
+|Entrega de información             |Observaciones solventadas        |Línea base confiable               |
+|-----------------------------------|---------------------------------|-----------------------------------|
+|<span style="color:blue">Si</span>|<span style="color:red">No</span>|<span style="color:red">No</span>  |
+
+## Indicador 12
+**Porcentaje de Carpetas de Investigación iniciadas contra personas agresoras derivados
+de incumplimiento de órdenes y/o medidas de protección.**
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+indicador_12 <- read_excel("/Volumes/GoogleDrive/.shortcut-targets-by-id/1P9QAchUEBWrM1Lnrwc1BSUaUgM4hvlat/SISEMH/INDICADORES/2021_INDICADORES/lineabase_AVGM/Indicadores Fiscalía 31122020.xlsx", 
+                          range = "c8:g382", 
+                          col_types = c("text", "numeric", "numeric", "numeric", "numeric"),
+                          sheet = "Ind 12")
+```
+
+```{r, echo=FALSE, results='hide',message=FALSE}
+indicador_12_valor<-indicador_12 %>% 
+  group_by(TRIMESTRE) %>% 
+  summarise(ordenes_v=sum(`TOTAL DE ÓRDENES DE PROTECCIÓN\r\n EMITIDAS VIGENTES`),
+            carpetas_ini_ord=sum(`TOTAL DE CARPETAS DE INVESTIGACIÓN INICIADAS CONTRA PERSONAS AGRESORAS DERIVADOS DEL INCUMPLIMIENTO DE \r\nÓRDENES DE PROTECCIÓN`),
+            medidas_v=sum(`TOTAL DE MEDIDAS DE PROTECCIÓN \r\nEMITIDAS VIGENTES`),
+            carpetas_inic_med=sum(`TOTAL DE CARPETAS DE INVESTIGACIÓN INICIADAS CONTRA PERSONAS AGRESORAS DERIVADOS DEL INCUMPLIMIENTO DE\r\n MEDIDAS DE PROTECCIÓN`)) %>% 
+  filter(ordenes_v>0)
+
+indicador_12_valor = rename(indicador_12_valor, c(Trimestre="TRIMESTRE", 
+                                                  `órdenes vigente` ="ordenes_v", 
+                                                  `Carpetas iniciadas por incumplimiento órdenes`="carpetas_ini_ord", 
+                                                  `medidas vigente` ="medidas_v", `Carpetas iniciadas por incumplimiento de medidas`="carpetas_inic_med"))
+
+            
+```
+Informacion trimestre del año 2020 para el cálculo de la línea base del indicador.
+```{r, echo=FALSE,  message=FALSE}
+
+knitr::kable(indicador_12_valor)
+```
+### Cálculo línea base
+
+|órdenes vigente   | Carpetas iniciadas por incumplimiento órdenes| medidas vigente| Carpetas iniciadas por incumplimiento de medidas|
+|------------------|----------------------------------------------|----------------|-------------------------------------------------|
+| 110              | 0                                            | 8,735          |158                                              |
+
+
+
+<br>
+
+**Medidas  de protección**
+$$ \frac{Carpetas \ de \ investigación \ iniciadas \ a \ personas \ agresoras \ por  \ el \ incumpliendo \ de \ una \ medida \ protección}
+{total \ de \ medidas \ de \ protección \ emitidas \ por \ violencia \ de \ género}100$$
+$$ \frac{0}
+{110}100=0$$
+
+
+**órdenes  de protección**
+$$ \frac{Carpetas \ de \ investigación \ iniciadas \ a \ personas \ agresoras \ por  \ el \ incumpliendo \ de \ una \ orden \ proteccióno}
+{total \ de \ órdenes \ de \ protección \ emitidas \ por \ violencia \ de \ género}100$$
+$$ \frac{158}
+{8,735}100=1.8 $$
+
+
+|Desagregado          |Unidad de medida   | Tendencia deseable     | Línea base|
+|---------------------|--------------------|------------------------|-----------|
+|Medidas de protección| Porcentaje         |      Negativa          |0          | 
+|Órdenes de protección| Porcentaje         |      Negativa          |2          | 
+
+### Observaciones
+
+Por la naturaleza del indicador es que el cálculo sea tan pequeño.
+
+|Entrega de información             |Observaciones solventadas        |Línea base confiable               |
+|-----------------------------------|---------------------------------|-----------------------------------|
+|<span style="color:blue">Si</span>|<span style="color:blue">Si</span>|<span style="color:blue">Si</span>  |
